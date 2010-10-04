@@ -2,7 +2,7 @@
 
 = Introduction =
 
-opencv2.1+QT+Eclipse环境搭建
+opencv2.1+QT+Eclipse
 
 http://tech.groups.yahoo.com/group/OpenCV/message/71043
 = Details =
@@ -37,7 +37,7 @@ with"of the previous window "Available Software". Then start the search and
 select to install CDT )
 Install Cmake Eclipse Editor
 see http://www.cthing.com/CMakeEd.asp
-see "Installazioni\Eclipse\c++\C++ Development using eclipse IDE鈥� Starters
+see "Installazioni\Eclipse\c++\C++ Development using eclipse IDE Starters
 guide.pdf"
 2 IMPORTANT
 Install MinGW MinGW-5.1.6.exe + Update gcc_4.5:
