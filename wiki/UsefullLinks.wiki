@@ -1,0 +1,14 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+some usefull links about project
+= Details =
+
+*OpenCV Examples 
+http://nashruddin.com/opencv-examples-for-operation-on-images.html
+
+*连通区域标记：c++版的bwlabel实现(基于opencv) 
+http://blog.csdn.net/yysdsyl/archive/2010/03/03/5343075.aspx
+
+*OpenCV Circular ROI
+http://nashruddin.com/OpenCV_Circular_ROI
