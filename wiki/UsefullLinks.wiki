@@ -12,3 +12,7 @@ http://blog.csdn.net/yysdsyl/archive/2010/03/03/5343075.aspx
 
 *OpenCV Circular ROI
 http://nashruddin.com/OpenCV_Circular_ROI
+
+*Searching Icons in a Screenshot using Template Matching
+
+http://nashruddin.com/searching-icons-in-a-screenshot-using-template-matching.html
