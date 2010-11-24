@@ -16,3 +16,7 @@ http://nashruddin.com/OpenCV_Circular_ROI
 *Searching Icons in a Screenshot using Template Matching
 
 http://nashruddin.com/searching-icons-in-a-screenshot-using-template-matching.html
+
+*OpenCV下车牌定位算法实现代码
+
+http://blog.csdn.net/heihei723/archive/2006/04/18/668492.aspx
