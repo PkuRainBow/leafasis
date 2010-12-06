@@ -4,34 +4,45 @@
 some usefull links about project
 = Details =
 
-*OpenCV Examples 
+  #1 OpenCV Examples 
+{{{
 http://nashruddin.com/opencv-examples-for-operation-on-images.html
+}}}
 
-*连通区域标记：c++版的bwlabel实现(基于opencv) 
+  #2 连通区域标记：c++版的bwlabel实现(基于opencv)
+{{{ 
 http://blog.csdn.net/yysdsyl/archive/2010/03/03/5343075.aspx
-
-*OpenCV Circular ROI
+}}}
+  #3 OpenCV Circular ROI
+{{{
 http://nashruddin.com/OpenCV_Circular_ROI
-
-*Searching Icons in a Screenshot using Template Matching
-
+}}}
+  #4 Searching Icons in a Screenshot using Template Matching
+{{{
 http://nashruddin.com/searching-icons-in-a-screenshot-using-template-matching.html
-
-*OpenCV下车牌定位算法实现代码
-
+}}}
+  #5 OpenCV下车牌定位算法实现代码
+{{{
 http://blog.csdn.net/heihei723/archive/2006/04/18/668492.aspx
-
-*ICONS online search图标查找
+}}}
+  #6 ICONS online search图标查找
+{{{
 http://www.easyicon.cn/
-
-*50个c/c++源代码网站 
-
+}}}
+  #7 50个c/c++源代码网站 
+{{{
 http://blog.csdn.net/ds1121/archive/2010/06/19/5680708.aspx
-
-*OpenCV 编程简介（矩阵/图像/视频的基本读写操作）
-
+}}}
+  #8 OpenCV 编程简介（矩阵/图像/视频的基本读写操作）
+{{{
 http://www.opencv.org.cn/index.php/OpenCV_%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B%EF%BC%88%E7%9F%A9%E9%98%B5/%E5%9B%BE%E5%83%8F/%E8%A7%86%E9%A2%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%EF%BC%89
-
-*cvConvertScale用法
-
+}}}
+  #9 cvConvertScale用法
+{{{
 http://www.opencv.org.cn/forum/viewtopic.php?f=1&t=2702&start=0&st=0&sk=t&sd=a
+
+}}}
+  #10 图像处理cnblog
+{{{
+http://www.cnblogs.com/xrwang/category/231541.html
+}}}
