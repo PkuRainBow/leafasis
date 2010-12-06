@@ -9,7 +9,7 @@ Add your content here.
 ----
   #convert Point to Mat
 {{{
-CvMat`*` points_f = cvCreateMat( 1, count, CV_32FC2 );
+CvMat * points_f = cvCreateMat( 1, count, CV_32FC2 );
 
 CvMat points_i = cvMat( 1, count, CV_32SC2, points_f->data.ptr );
 
