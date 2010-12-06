@@ -4,8 +4,8 @@
 some usefull links about project
 = Details =
 
-  #1 OpenCV Examples 
-{{{
+  #1 [http://nashruddin.com/opencv-examples-for-operation-on-images.html OpenCVExamples]
+{{{ 
 http://nashruddin.com/opencv-examples-for-operation-on-images.html
 }}}
 
