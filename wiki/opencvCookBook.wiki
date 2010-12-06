@@ -7,7 +7,7 @@ Add your content here.
 
 = Details =
 ----
-  #convert Point to Mat
+  # Convert Points to Mat
 {{{
 CvMat * points_f = cvCreateMat( 1, count, CV_32FC2 );
 
