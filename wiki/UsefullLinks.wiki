@@ -42,7 +42,11 @@ http://www.opencv.org.cn/index.php/OpenCV_%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B%E
 http://www.opencv.org.cn/forum/viewtopic.php?f=1&t=2702&start=0&st=0&sk=t&sd=a
 
 }}}
-  #10 图像处理cnblog
+  # 图像处理cnblog
 {{{
 http://www.cnblogs.com/xrwang/category/231541.html
+}}}
+  # [http://qt-apps.org/ FreeQtApps]
+{{{
+有很多可用的QT源程序
 }}}
