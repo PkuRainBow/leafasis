@@ -33,9 +33,9 @@ http://www.easyicon.cn/
 {{{
 http://blog.csdn.net/ds1121/archive/2010/06/19/5680708.aspx
 }}}
-  #8 OpenCV 编程简介（矩阵/图像/视频的基本读写操作）
+  #8 OpenCV 编程简介（矩阵/图像/视频的基本读写操作）[http://www.opencv.org.cn/index.php/OpenCV_%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B%EF%BC%88%E7%9F%A9%E9%98%B5/%E5%9B%BE%E5%83%8F/%E8%A7%86%E9%A2%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%EF%BC%89 link]
 {{{
-http://www.opencv.org.cn/index.php/OpenCV_%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B%EF%BC%88%E7%9F%A9%E9%98%B5/%E5%9B%BE%E5%83%8F/%E8%A7%86%E9%A2%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C%EF%BC%89
+
 }}}
   #9 cvConvertScale用法
 {{{
@@ -49,4 +49,9 @@ http://www.cnblogs.com/xrwang/category/231541.html
   # [http://qt-apps.org/ FreeQtApps]
 {{{
 有很多可用的QT源程序
+}}}
+  # Introduction to Design Patterns in C++ with Qt4 [http://cartan.cas.suffolk.edu/oopdocbook/opensource link]
+
+{{{
+《C++设计模式》的原版
 }}}
