@@ -38,3 +38,31 @@ cvDrawContours( img, cvPointSeqFromMat(CV_SEQ_KIND_CURVE+CV_SEQ_FLAG_CLOSED,
    vector, &header, &block), CV_RGB(255,0,0), CV_RGB(255,0,0), 0, 3, 8, cvPoint(0,0));
 }}}
 ----
+  # 使用线段迭代器计算彩色线上象素值的和
+{{{
+CvScalar sum_line_pixels( IplImage* image, CvPoint pt1, CvPoint pt2 )
+    {
+        CvLineIterator iterator;
+        int blue_sum = 0, green_sum = 0, red_sum = 0;
+        int count = cvInitLineIterator( image, pt1, pt2, &iterator, 8 );
+
+        for( int i = 0; i < count; i++ ){
+            blue_sum += iterator.ptr[0];
+            green_sum += iterator.ptr[1];
+            red_sum += iterator.ptr[2];
+            CV_NEXT_LINE_POINT(iterator);
+
+            /* print the pixel coordinates: demonstrates how to calculate the coordinates */
+            {
+            int offset, x, y;
+            /* assume that ROI is not set, otherwise need to take it into account. */
+            offset = iterator.ptr - (uchar*)(image->imageData);
+            y = offset/image->widthStep;
+            x = (offset - y*image->widthStep)/(3*sizeof(uchar) /* size of pixel */);
+            printf("(%d,%d)\n", x, y );
+            }
+        }
+        return cvScalar( blue_sum, green_sum, red_sum );
+    }
+}}}
+----
