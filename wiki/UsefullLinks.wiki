@@ -55,4 +55,4 @@ http://www.cnblogs.com/xrwang/category/231541.html
 {{{
 《C++设计模式》的原版
 }}}
-   # Point in triangle test[http://www.blackpawn.com/texts/pointinpoly/default.html link]
+  # Point in triangle test. [http://www.blackpawn.com/texts/pointinpoly/default.html link]
