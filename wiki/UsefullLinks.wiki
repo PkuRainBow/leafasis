@@ -51,8 +51,13 @@ http://www.cnblogs.com/xrwang/category/231541.html
 有很多可用的QT源程序
 }}}
   # Introduction to Design Patterns in C++ with Qt4 [http://cartan.cas.suffolk.edu/oopdocbook/opensource link]
-
 {{{
 《C++设计模式》的原版
 }}}
-  # Point in triangle test. [http://www.blackpawn.com/texts/pointinpoly/default.html link]
+
+ # Point in triangle test. [http://www.blackpawn.com/texts/pointinpoly/default.html link]
+
+ # 视频监控 形态学 OpenCV [http://lh2078.blog.163.com/ link]
+{{{
+这里有大量形态学的资料，并有基于OpenCv的开源形态库 
+}}}
