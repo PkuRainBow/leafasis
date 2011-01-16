@@ -8,7 +8,6 @@ some usefull links about project
 {{{ 
 http://nashruddin.com/opencv-examples-for-operation-on-images.html
 }}}
-
   #2 连通区域标记：c++版的bwlabel实现(基于opencv)
 {{{ 
 http://blog.csdn.net/yysdsyl/archive/2010/03/03/5343075.aspx
@@ -54,10 +53,18 @@ http://www.cnblogs.com/xrwang/category/231541.html
 {{{
 《C++设计模式》的原版
 }}}
-
- # Point in triangle test. [http://www.blackpawn.com/texts/pointinpoly/default.html link]
-
- # 视频监控 形态学 OpenCV [http://lh2078.blog.163.com/ link]
+  # Point in triangle test. [http://www.blackpawn.com/texts/pointinpoly/default.html link]
+  # 视频监控 形态学 OpenCV [http://lh2078.blog.163.com/ link]
 {{{
 这里有大量形态学的资料，并有基于OpenCv的开源形态库 
+}}}
+  # computervision online
+{{{
+http://www.computervisiononline.com/
+这里有全面的计算机视觉软件的介绍
+}}}
+  # Image Processing On Line
+{{{
+http://www.ipol.im/
+这里有图像处理的算法和在线演示，还有详细的算法描述
 }}}
