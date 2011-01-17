@@ -17,7 +17,6 @@ cvCvtSeqToArray( contour, points_f->data.ptr, CV_WHOLE_SEQ );
 
 cvConvert( &points_i, points_f );`
 }}}
-----
   # cvPointSeqFromMat
 {{{
 CvSeq* cvPointSeqFromMat( int seq_kind, const CvArr* mat,
@@ -37,7 +36,6 @@ cvZero(img);
 cvDrawContours( img, cvPointSeqFromMat(CV_SEQ_KIND_CURVE+CV_SEQ_FLAG_CLOSED,
    vector, &header, &block), CV_RGB(255,0,0), CV_RGB(255,0,0), 0, 3, 8, cvPoint(0,0));
 }}}
-----
   # 使用线段迭代器计算彩色线上象素值的和
 {{{
 CvScalar sum_line_pixels( IplImage* image, CvPoint pt1, CvPoint pt2 )
