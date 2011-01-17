@@ -66,3 +66,7 @@ CvScalar sum_line_pixels( IplImage* image, CvPoint pt1, CvPoint pt2 )
     }
 }}}
 ----
+  # sql 选指定的行,实现分页
+{{{
+select row_number() over(order by cardid) as row_number, * from card 
+}}}
