@@ -69,4 +69,18 @@ CvScalar sum_line_pixels( IplImage* image, CvPoint pt1, CvPoint pt2 )
   # sql 选指定的行,实现分页
 {{{
 select row_number() over(order by cardid) as row_number, * from card 
+var result = (from u in context.Users orderby u.Age select u).Skip(skipCount).Take(pageSize);
+
+SELECT TOP 10 [t1].[Id], [t1].[Name], [t1].[Age]
+FROM (
+    SELECT ROW_NUMBER() OVER (ORDER BY [t0].[Age]) AS [ROW_NUMBER], [t0].[Id], [t0].[Name], [t0].[Age]
+    FROM [dbo].[User] AS [t0]
+    ) AS [t1]
+WHERE [t1].[ROW_NUMBER] > @p0
+ORDER BY [t1].[Age]
+-- @p0: Input Int32 (Size = 0; Prec = 0; Scale = 0) [10]
+-- Context: SqlProvider(Sql2005) Model: AttributedMetaModel Build: 3.5.20706.1
+
+select * ,myid =( select count(cardid) from card as A where a.cardid < B.cardid) + 1
+from card as B 
 }}}
