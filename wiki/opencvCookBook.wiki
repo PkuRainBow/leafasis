@@ -86,4 +86,5 @@ from card as B
   # shell slice
 {{{
 tasklist -fi "imagename eq posserver.exe" | tee -a posserver.txt && date | tee -a porserver.txt
+tasklist -fi "imagename eq postest.exe" | wc -l
 }}}
