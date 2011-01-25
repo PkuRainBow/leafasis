@@ -82,3 +82,8 @@ ORDER BY [t1].[Age]
 select * ,myid =( select count(cardid) from card as A where a.cardid < B.cardid) + 1
 from card as B 
 }}}
+----
+  # shell slice
+{{{
+tasklist -fi "imagename eq posserver.exe" | tee -a posserver.txt && date | tee -a porserver.txt
+}}}
