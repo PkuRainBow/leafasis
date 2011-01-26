@@ -81,6 +81,21 @@ ORDER BY [t1].[Age]
 
 select * ,myid =( select count(cardid) from card as A where a.cardid < B.cardid) + 1
 from card as B 
+
+查询数据库连接数
+select   count(*)   from   master.dbo.sysprocesses   where   dbid=db_id('shht1')
+
+SELECT * FROM 
+[Master].[dbo].[SYSPROCESSES] WHERE [DBID] 
+IN 
+(
+  SELECT 
+   [DBID]
+  FROM 
+   [Master].[dbo].[SYSDATABASES] 
+  WHERE 
+   NAME='shht1'
+)
 }}}
 ----
   # shell slice
