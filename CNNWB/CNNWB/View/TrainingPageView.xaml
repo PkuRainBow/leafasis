@@ -1,0 +1,104 @@
+﻿<UserControl 
+    x:Class="CNNWB.View.TrainingPageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:view="clr-namespace:CNNWB.View"
+    
+    >
+    <UserControl.Resources >
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Name="gridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="166" MinHeight="166" />
+            <RowDefinition Height="*" MinHeight="100" />
+        </Grid.RowDefinitions>
+        <GroupBox Header="Progress" Height="Auto" HorizontalAlignment="Right" Margin="6" Name="groupBox1" VerticalAlignment="Stretch" Width="Auto" IsEnabled="False" UseLayoutRounding="False" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" Grid.Column="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch">
+                <TextBlock Height="116" HorizontalAlignment="Left" Margin="3" Name="textBlockTrainingProgress" Text="{Binding Path=ProgressText}" VerticalAlignment="Bottom" Width="185" UseLayoutRounding="True" SnapsToDevicePixels="True" />
+                <Image Source="{Binding ProgressImage}" Height="64" Margin="3" Name="imagePattern" Stretch="Uniform" Width="64" UseLayoutRounding="True" SnapsToDevicePixels="True" HorizontalAlignment="Left" VerticalAlignment="Bottom" DataContext="{Binding}" />
+                <Label Content="{Binding ProgressImageNumber}" Height="28" Name="labelImageNumber" VerticalAlignment="Bottom" Margin="3" Padding="0" Width="12" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+            </StackPanel>
+        </GroupBox>
+        <ListView Height="Auto" HorizontalAlignment="Stretch" Name="listViewTrainingResult" VerticalAlignment="Stretch" Width="Auto" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=TrainingResultCollection}" Grid.Row="1" SelectionMode="Single" UseLayoutRounding="True" IsEnabled="True" BorderThickness="0" Grid.ColumnSpan="1" IsTextSearchEnabled="False" SnapsToDevicePixels="True">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False" RenderOptions.ClearTypeHint="Enabled">
+                    <GridViewColumn Header="Epoch" Width="50">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Epoch}" HorizontalAlignment="Right"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Distorted" Width="60">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Distorted}" IsHitTestVisible="False" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Training Rate" Width="110">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TrainingRate, StringFormat=#0.0000000000}" HorizontalAlignment="Right" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Avg Train MSE" Width="110">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding AvgTrainMSE, StringFormat=#0.0000000000}" HorizontalAlignment="Right"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Avg Test MSE" Width="110">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding AvgTestMSE, StringFormat=#0.0000000000}" HorizontalAlignment="Right"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Train Error %" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TrainErrorPercentage, StringFormat=#0.000000}" HorizontalAlignment="Right"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Test Error %" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TestErrorPercentage, StringFormat=#0.000000}" HorizontalAlignment="Right"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Train Errors" Width="70">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TrainErrors}" HorizontalAlignment="Right"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Test Errors" Width="70">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TestErrors}" HorizontalAlignment="Right"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Duration" Width="70">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ElapsedTime, StringFormat={}{0:c}}" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+    </Grid>
+</UserControl>

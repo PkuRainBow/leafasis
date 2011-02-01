@@ -1,0 +1,61 @@
+﻿<UserControl 
+    x:Class="CNNWB.View.PageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:view="clr-namespace:CNNWB.View"
+    xmlns:viewModel="clr-namespace:CNNWB.ViewModel"  
+    mc:Ignorable="d" 
+    d:DesignWidth="640" d:DesignHeight="480">
+    
+    <UserControl.Resources>
+        <!-- These four templates map a ViewModel to a View. -->
+        <DataTemplate DataType="{x:Type viewModel:DesignPageViewModel}">
+            <view:DesignPageView />
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModel:TrainingPageViewModel}">
+            <view:TrainingPageView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:TestingPageViewModel}">
+            <view:TestingPageView />
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModel:CalculatePageViewModel}">
+            <view:CalculatePageView />
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <DockPanel Name="dockPanelPageView" Width="Auto" Height="Auto">
+        <ToolBarTray DockPanel.Dock="Top" Height="32" HorizontalAlignment="Stretch" Name="toolBarTray" VerticalAlignment="Top" Width="Auto">
+            <ToolBar>
+                <ComboBox Name="PageViews" Margin="2" MinWidth="80" ItemsSource="{Binding Path=Pages}"  SelectedValue="{Binding Path=CurrentPage, Mode=TwoWay}"  SelectedItem="{Binding Path=CurrentPage, Mode=TwoWay}" IsEnabled="{Binding Path=CurrentPage.IsValid, Mode=TwoWay}" IsManipulationEnabled="False" UseLayoutRounding="True" SnapsToDevicePixels="True" IsReadOnly="True" IsTextSearchEnabled="False" IsSynchronizedWithCurrentItem="True" DisplayMemberPath="DisplayName">
+                </ComboBox>
+                <Slider Name="Parallelism" Maximum="{Binding Path=MaximalDegreeOfParallelism}" Minimum="1" Value="{Binding Path=MaxDegreeOfParallelism, Mode=TwoWay}" TickPlacement="Both" SmallChange="1" Width="140" Margin="8,0,6,0" Padding="0" Interval="33" IsDirectionReversed="False" IsSnapToTickEnabled="True" UseLayoutRounding="True" SnapsToDevicePixels="True" AutoToolTipPlacement="BottomRight" ToolTip="Number of logical cores used">
+                </Slider>
+            </ToolBar>
+            <ToolBar Name="CmdToolBar" ItemsSource="{Binding Path=CommandToolBar}" Visibility="{Binding Path=CommandToolBarVisibility}"/>
+        </ToolBarTray>
+
+        <StatusBar Name="statusBarMain" Width="Auto" Height="23" DockPanel.Dock="Bottom">
+            <StatusBarItem HorizontalAlignment="Left" Width="Auto" Foreground="Black">
+                <TextBlock x:Name="Status" Margin="2,0,2,0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Text="Ready"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Left" Width="Auto" Foreground="Black">
+                <TextBlock x:Name="Time" Margin="2,0,2,0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Text="00:00:00"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+                <ProgressBar Margin="0" x:Name="ProgressBar" HorizontalContentAlignment="Stretch" Value="0" VerticalContentAlignment="Stretch" Maximum="100" Minimum="0"  SmallChange="1" Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsTabStop="False" Width="Auto">
+                </ProgressBar>
+            </StatusBarItem>
+        </StatusBar>
+        
+        <!-- CURRENT PAGE AREA -->
+        <Border Background="White">
+            <ContentControl Content="{Binding Path=CurrentPage}" UseLayoutRounding="True" Name="PageContentControl"  />
+            <!--<HeaderedContentControl Content="{Binding Path=CurrentPage}" Header="{Binding Path=CurrentPage.DisplayName}" />-->
+        </Border>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{144C1CDE-45E3-4865-99EF-6EC04CDBABC5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CNNWB</RootNamespace>
+    <AssemblyName>CNNWB</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <StartupObject>CNNWB.App</StartupObject>
+    <ApplicationIcon>Resources\Images\App.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS;</DefineConstants>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+    <Optimize>false</Optimize>
+    <ErrorReport>prompt</ErrorReport>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DefineConstants>
+    </DefineConstants>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <ErrorReport>send</ErrorReport>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>826ECCC31F5D3B9C60C740D097ACDB37D348A916</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>CNNWB_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Commands\RelayCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\BitmapToImage.cs" />
+    <Compile Include="Common\InformationDialog.cs" />
+    <Compile Include="Common\ThreadSafeRandom.cs" />
+    <Compile Include="Dialogs\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\RangeRule.cs" />
+    <Compile Include="Dialogs\TrainingSchemaEditor.xaml.cs">
+      <DependentUpon>TrainingSchemaEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainViewWindow.xaml.cs">
+      <DependentUpon>MainViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\NeuralNetworkDataSet.cs">
+      <DependentUpon>NeuralNetworkDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Model\NeuralNetworkDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NeuralNetworkDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\CalculatePageViewModel.cs" />
+    <Compile Include="ViewModel\DesignPageViewModel.cs" />
+    <Compile Include="ViewModel\TestingPageViewModel.cs" />
+    <Compile Include="View\CalculatePageView.xaml.cs">
+      <DependentUpon>CalculatePageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DesignPageView.xaml.cs">
+      <DependentUpon>DesignPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TestingPageView.xaml.cs">
+      <DependentUpon>TestingPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PageView.xaml.cs">
+      <DependentUpon>PageView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Dialogs\DownloadMNIST.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\TrainingParameters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\TrainingSchemaEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\DataProvider.cs" />
+    <Compile Include="Common\ConfusionMatrix.cs" />
+    <Compile Include="Model\NeuralNetworks.cs" />
+    <Compile Include="Dialogs\DownloadMNIST.xaml.cs">
+      <DependentUpon>DownloadMNIST.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TrainingParameters.xaml.cs">
+      <DependentUpon>TrainingParameters.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\CalculatePageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DesignPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TrainingPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TestingPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\TrainingPageViewModel.cs" />
+    <Compile Include="ViewModel\PageViewModel.cs" />
+    <Compile Include="ViewModel\PageViewModelBase.cs" />
+    <Compile Include="View\TrainingPageView.xaml.cs">
+      <DependentUpon>TrainingPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <Content Include="Manual\A Convolutional Neural Network Workbench.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Model\NeuralNetworkDataSet.xsc">
+      <DependentUpon>NeuralNetworkDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Model\NeuralNetworkDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NeuralNetworkDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Model\NeuralNetworkDataSet.xss">
+      <DependentUpon>NeuralNetworkDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\CopyHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\App.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\CutHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\DeleteHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\PasteHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Edit_RedoHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Edit_UndoHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\OpenFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\PrintPreviewHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\PrintHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\saveHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\SaveAllHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Properties.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\PrintSetupHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\openHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\PlayHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\StopHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\RecordHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Annotate_Warning.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Annotate_HighPriority.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Annotate_Error.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Image0.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Image1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Image2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Image3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Image4.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Image5.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Image6.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Image7.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Image8.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Image9.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\CalculatorHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\Folder_16x16.png" />
+    <Content Include="SQL Scripts\Create the database.sql" />
+    <Content Include="SQL Scripts\Create the tables.sql" />
+    <Content Include="SQL Scripts\Delete database.sql" />
+    <Content Include="SQL Scripts\Fill Types.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\WindowsAPICodePack\Core\Core.csproj">
+      <Project>{2E1FB0DF-F9BB-4909-9F32-2D9D022A8E57}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WindowsAPICodePack\ShellExtensions\ShellExtensions.csproj">
+      <Project>{F3C863EC-33F4-4ED2-9D67-00BF3EEEAB64}</Project>
+      <Name>ShellExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WindowsAPICodePack\Shell\Shell.csproj">
+      <Project>{AA0C00CB-8699-4F37-BFAE-40CA87ACC06D}</Project>
+      <Name>Shell</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
