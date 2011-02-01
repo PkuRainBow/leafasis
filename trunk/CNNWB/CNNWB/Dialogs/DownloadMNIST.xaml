@@ -1,0 +1,30 @@
+﻿<Window x:Class="CNNWB.DownloadMNIST"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Retrieving MNIST Dataset" Height="300" Width="360" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Topmost="True" Loaded="Window_Loaded" WindowStyle="ToolWindow">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="26"/>
+            <RowDefinition Height="30" />
+           
+        </Grid.RowDefinitions>
+        <ProgressBar Height="10" HorizontalAlignment="Stretch" Margin="0" Name="progressBarTestingLabels" VerticalAlignment="Bottom" Width="Auto" Grid.Row="1" IsTabStop="False" />
+        <ProgressBar Height="10" HorizontalAlignment="Stretch" Margin="0" Name="progressBarTrainingLabels" VerticalAlignment="Bottom" Width="Auto" Grid.Row="2" IsTabStop="False" />
+        <ProgressBar Height="10" HorizontalAlignment="Stretch" Margin="0" Name="progressBarTestingImages" VerticalAlignment="Bottom" Width="Auto" Grid.Row="3" IsTabStop="False" />
+        <ProgressBar Height="10" HorizontalAlignment="Stretch" Margin="0" Name="progressBarTrainingImages" VerticalAlignment="Bottom" Width="Auto" Grid.Row="4" IsTabStop="False" />
+        
+        <TextBlock Height="23" HorizontalAlignment="Stretch" Name="textBlockTestingLabels" Text="Downloading Testing Labels:" VerticalAlignment="Bottom" Width="Auto" Grid.Row="1" Margin="0,10" />
+        <TextBlock Height="23" HorizontalAlignment="Stretch" Name="textBlockTrainingLabels" Text="Downloading Training Labels:" VerticalAlignment="Bottom" Width="Auto" Grid.Row="2" Margin="0,10" />
+        <TextBlock Height="23" HorizontalAlignment="Stretch" Name="textBlockTestingImages" Text="Downloading Testing Images:" VerticalAlignment="Bottom" Width="Auto" Grid.Row="3" Margin="0,10" />
+        <TextBlock Height="23" HorizontalAlignment="Stretch" Name="textBlockTrainingImages" Text="Downloading Training Images:" VerticalAlignment="Bottom" Width="Auto" Grid.Row="4" Margin="0,10"/>
+        
+        
+        <Button Content="OK" Height="23" HorizontalAlignment="Right"  Name="buttonOK" VerticalAlignment="Center" Width="75" IsDefault="True" Grid.Row="6" Margin="0,0,81,0" Click="buttonOK_Click" />
+        <Button Content="Cancel" Height="23" HorizontalAlignment="Right" Name="buttonCancel" VerticalAlignment="Center" Width="75" IsCancel="True" Grid.Row="6" Margin="0"/>
+    </Grid>
+</Window>

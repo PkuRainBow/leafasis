@@ -1,0 +1,194 @@
+﻿<Window x:Class="CNNWB.TrainingParameters"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:CNNWB"
+        xmlns:model="clr-namespace:CNNWB.Model" 
+        FocusManager.FocusedElement="{Binding ElementName=textBoxNumberOfEpochs}"
+        
+        Title="Select Training Parameters" Height="439" Width="306" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="NoResize" Topmost="True" UseLayoutRounding="True" SnapsToDevicePixels="True" VisualClearTypeHint="Enabled" VisualTextRenderingMode="ClearType">
+
+    <Window.Resources>
+        <model:TrainingRate x:Key="data"/>
+
+        <ControlTemplate x:Key="validationTemplate">
+            <DockPanel>
+                <Image Source="/CNNWB;component/Resources/Images/Annotate_HighPriority.ico" Stretch="None"></Image>
+                <AdornedElementPlaceholder/>
+            </DockPanel>
+        </ControlTemplate>
+        <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="Validation.HasError" Value="true"/>
+                    </MultiTrigger.Conditions>
+
+                    <Setter Property="ToolTip"  Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </MultiTrigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="true"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="ForceCursor" Value="True"/>
+                    <Setter Property="Cursor" Value="IBeam"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Window.Resources>
+    
+    <Grid Margin="6">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="2" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="1" Grid.Row="0" Height="Auto" HorizontalAlignment="Stretch" Margin="0" Name="textBlock1" Text="Number of Epochs:" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" />
+        <TextBlock Grid.Column="1" Grid.Row="1" Height="Auto" HorizontalAlignment="Stretch" Margin="0" Name="textBlock2" Text="Initial learning rate:" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" />
+        <TextBlock Grid.Column="1" Grid.Row="2" Height="Auto" HorizontalAlignment="Stretch" Margin="0" Name="textBlock3" Text="Minimum learning rate:" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" />
+        <TextBlock Grid.Column="1" Grid.Row="3" Height="Auto" HorizontalAlignment="Stretch" Margin="0" Name="textBlock4" Text="Training rate decay:" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" />
+        <TextBlock Grid.Column="1" Grid.Row="4" Height="Auto" HorizontalAlignment="Stretch" Margin="16,0,0,0" Name="textBlock5" Text="after N epochs:" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" />
+        <TextBlock Grid.Column="1" Grid.Row="7" Height="Auto" HorizontalAlignment="Stretch" Margin="0" Name="textBlock6" Text="Same distortions for N epochs:" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" />
+        <TextBlock Grid.Column="1" Grid.Row="8" Height="Auto" HorizontalAlignment="Stretch" Margin="0" Name="textBlock7" Text="Severity factor:" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" />
+        <TextBlock Grid.Column="1" Grid.Row="9" Height="Auto" HorizontalAlignment="Stretch" Margin="0" Name="textBlock8" Text="Maximum scaling:" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" />
+        <TextBlock Grid.Column="1" Grid.Row="10" Height="Auto" HorizontalAlignment="Stretch" Margin="0" Name="textBlock9" Text="Maximum rotation:" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" />
+        <TextBlock Grid.Column="1" Grid.Row="11" Height="Auto" HorizontalAlignment="Stretch" Margin="0" Name="textBlock10" Text="Elastic sigma:" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" />
+        <TextBlock Grid.Column="1" Grid.Row="12" Height="Auto" HorizontalAlignment="Stretch" Margin="0" Name="textBlock11" Text="Elastic scaling:" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" />
+
+        <TextBox Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Height="23" HorizontalAlignment="Stretch" Name="textBoxNumberOfEpochs" VerticalAlignment="Stretch" Width="Auto" TabIndex="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" AllowDrop="False" MaxLines="1" AutoWordSelection="True">
+            <TextBox.Text>
+                <Binding Path="Epochs" UpdateSourceTrigger="PropertyChanged">
+                 <Binding.ValidationRules>
+                    <c:IntRangeRule Min="1" Max="999"/>
+                </Binding.ValidationRules>
+            </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Column="2" Grid.Row="1" Height="23" Name="textBoxInitialTrainingRate" VerticalAlignment="Stretch" Width="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Padding="1" TabIndex="1" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" AllowDrop="False" AutoWordSelection="True" IsTabStop="True" MaxLines="1">
+            <TextBox.Text>
+                <Binding Path="Rate" StringFormat="{}{0:0.##########}" UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                    <c:DoubleRangeRule Min="0" Max="1"/>
+                </Binding.ValidationRules>
+            </Binding>
+            </TextBox.Text> 
+        </TextBox>
+        <TextBox Grid.Column="2" Grid.Row="2" Grid.RowSpan="1" Height="23" HorizontalAlignment="Stretch" Name="textBoxMinimumTrainingRate" VerticalAlignment="Stretch" Width="Auto" Padding="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" TabIndex="2" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" MaxLines="1" AutoWordSelection="True" AllowDrop="False">
+            <TextBox.Text>
+                <Binding Path="MinimumRate" StringFormat="{}{0:0.##########}" UpdateSourceTrigger="PropertyChanged" >
+                    <Binding.ValidationRules>
+                        <c:DoubleRangeRule Min="0" Max="1"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="3" Grid.RowSpan="1" Height="23" HorizontalAlignment="Stretch" Name="textBoxDecayFactor" VerticalAlignment="Stretch" Width="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Padding="1" TabIndex="3" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" MaxLines="1" AutoWordSelection="True" AllowDrop="False">
+            <TextBox.Text>
+                <Binding Path="DecayFactor" StringFormat="{}{0:R}" UpdateSourceTrigger="PropertyChanged" >
+                    <Binding.ValidationRules>
+                        <c:DoubleRangeRule Min="0" Max="1"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Column="2" Grid.Row="4" Height="23" Name="textBoxDecayAfterEpochs" VerticalAlignment="Stretch" Width="Auto" Padding="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" TabIndex="4"  Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" AutoWordSelection="True" MaxLines="1" AllowDrop="False">
+            <TextBox.Text>
+                <Binding Path="DecayAfterEpochs"  UpdateSourceTrigger="PropertyChanged" >
+                    <Binding.ValidationRules>
+                        <c:IntRangeRule Min="0" Max="100"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="5" Grid.RowSpan="1" Height="23" HorizontalAlignment="Stretch" Margin="0" Name="textBoxWeightSaveTreshold" VerticalAlignment="Stretch" Width="Auto" Padding="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"  Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" TabIndex="5" AutoWordSelection="True" AllowDrop="False" MaxLines="1">
+            <TextBox.Text>
+                <Binding Path="WeightSaveTreshold" StringFormat="{}{0:R}" UpdateSourceTrigger="PropertyChanged" >
+                    <Binding.ValidationRules>
+                        <c:DoubleRangeRule Min="0" Max="100"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <CheckBox Content="Use distortions" Grid.Column="1" Grid.Row="6" Height="Auto" HorizontalAlignment="Stretch" Name="checkBoxUseDistortions" VerticalAlignment="Center" Width="Auto" TabIndex="6" Checked="checkBoxUseDistortions_CheckedChanged" Unchecked="checkBoxUseDistortions_CheckedChanged" FontWeight="Bold">
+            <CheckBox.IsChecked>
+                <Binding Path="Distorted" UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </CheckBox.IsChecked>
+        </CheckBox>
+        <TextBox Grid.Column="2" Grid.Row="7" Grid.RowSpan="1" Height="23" HorizontalAlignment="Stretch" Name="textBoxSameDistortionsForEpochs" VerticalAlignment="Stretch" Width="Auto" Padding="1" MaxLines="1" TabIndex="7" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" IsEnabled="True" AutoWordSelection="True" AllowDrop="False">
+            <TextBox.Text>
+                <Binding Path="SameDistortionsForNEpochs" UpdateSourceTrigger="PropertyChanged" >
+                    <Binding.ValidationRules>
+                        <c:IntRangeRule Min="0" Max="100"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Column="2" Grid.Row="8" Grid.RowSpan="1" Height="23" HorizontalAlignment="Stretch" Name="textBoxSeverityFactor" VerticalAlignment="Stretch" Width="Auto" Padding="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" MaxLines="1" TabIndex="8" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" AutoWordSelection="True" AllowDrop="False">
+            <TextBox.Text>
+                <Binding Path="SeverityFactor" StringFormat="{}{0:R}" UpdateSourceTrigger="PropertyChanged" >
+                    <Binding.ValidationRules>
+                        <c:DoubleRangeRule Min="0" Max="1"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Column="2" Grid.Row="9" Grid.RowSpan="1" Height="23" HorizontalAlignment="Stretch" Name="textBoxMaximumScaling" VerticalAlignment="Stretch" Width="Auto" Padding="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" MaxLines="1" TabIndex="9" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" AutoWordSelection="True" AllowDrop="False">
+            <TextBox.Text>
+                <Binding Path="MaxScaling" StringFormat="{}{0:R}" UpdateSourceTrigger="PropertyChanged" >
+                    <Binding.ValidationRules>
+                        <c:DoubleRangeRule Min="0" Max="100"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Column="2" Grid.Row="10" Grid.RowSpan="1" Height="23" HorizontalAlignment="Stretch" Name="textBoxMaximumRotation" VerticalAlignment="Stretch" Width="Auto" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Padding="1" MaxLines="1" TabIndex="10" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" AutoWordSelection="True" AllowDrop="False">
+            <TextBox.Text>
+                <Binding Path="MaxRotation" StringFormat="{}{0:R}" UpdateSourceTrigger="PropertyChanged" >
+                    <Binding.ValidationRules>
+                        <c:DoubleRangeRule Min="0" Max="100"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="11" Grid.RowSpan="1" Height="23" HorizontalAlignment="Stretch" Name="textBoxElasticSigma" VerticalAlignment="Stretch" Width="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Padding="1" MaxLines="1" TabIndex="11" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" AutoWordSelection="True" AllowDrop="False">
+            <TextBox.Text>
+                <Binding Path="ElasticSigma" StringFormat="{}{0:R}" UpdateSourceTrigger="PropertyChanged" >
+                    <Binding.ValidationRules>
+                        <c:DoubleRangeRule Min="0" Max="100"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="12" Grid.RowSpan="1" Height="23" HorizontalAlignment="Stretch" Name="textBoxElasticScaling" VerticalAlignment="Stretch" Width="Auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Padding="1" MaxLines="1" TabIndex="12" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource textBoxInError}" AutoWordSelection="True" AllowDrop="False">
+            <TextBox.Text>
+                <Binding Path="ElasticScaling" StringFormat="{}{0:R}" UpdateSourceTrigger="PropertyChanged" >
+                    <Binding.ValidationRules>
+                        <c:DoubleRangeRule Min="0" Max="1"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Button Content="OK" Grid.Column="1" Grid.Row="14" Height="23" Margin="81,0" Name="buttonOK" IsDefault="True" Padding="0" Click="buttonOK_Click" Grid.ColumnSpan="2" Width="75" HorizontalContentAlignment="Center" HorizontalAlignment="Right" TabIndex="13"/>
+        <Button Content="Cancel" Grid.Column="2" Grid.Row="14" Height="23" HorizontalAlignment="Right" Margin="0" Name="buttonCancel" VerticalAlignment="Stretch" Width="75" IsCancel="True" Padding="0" TabIndex="14" Grid.ColumnSpan="1" />
+        <TextBlock Grid.Column="1" Grid.Row="5" Grid.RowSpan="1" Height="Auto" HorizontalAlignment="Stretch" Margin="0" Name="textBlock12" Text="Weight save error treshold:" VerticalAlignment="Center" FontWeight="Bold" />
+    </Grid>
+</Window>

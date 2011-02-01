@@ -1,0 +1,148 @@
+﻿<UserControl 
+    x:Class="CNNWB.View.TestingPageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:view="clr-namespace:CNNWB.View"
+    mc:Ignorable="d" d:DesignHeight="414" BorderThickness="0" xmlns:my="clr-namespace:CNNWB">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="validationTemplate">
+            <DockPanel>
+                <Image Source="/CNNWB;component/Resources/Images/Annotate_HighPriority.ico" Stretch="None"></Image>
+                <AdornedElementPlaceholder/>
+            </DockPanel>
+        </ControlTemplate>
+        <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"  Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Name="gridMain" ShowGridLines="False" SnapsToDevicePixels="True" UseLayoutRounding="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250" />
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Progress" HorizontalAlignment="Right" Margin="0,6,6,109" Name="groupBox1" VerticalAlignment="Stretch" Width="Auto" IsEnabled="False" UseLayoutRounding="True" Grid.Column="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="3">
+                <TextBlock Text="{Binding ProgressText}" Height="101" HorizontalAlignment="Left" Margin="3" Name="textBlockTrainingProgress" VerticalAlignment="Bottom" Width="185" UseLayoutRounding="True" SnapsToDevicePixels="True" />
+                <Image Source="{Binding ProgressImage}" Height="64" Margin="3" Name="imagePattern" Stretch="Uniform" Width="64" UseLayoutRounding="True" SnapsToDevicePixels="True" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                <Label Content="{Binding ProgressImageNumber}" Height="28" Name="labelImageNumber" VerticalAlignment="Bottom" Margin="3" Padding="0" Width="12" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+            </StackPanel>
+        </GroupBox>
+
+        <TextBox IsEnabled="{Binding Path=IsValid}" Text="{Binding Path=ConfusionDocument}" Grid.Row="2" Height="Auto" Margin="6" Name="textBoxTestResult" Width="Auto" VerticalScrollBarVisibility="Visible" Padding="0" IsUndoEnabled="False" HorizontalScrollBarVisibility="Disabled" AcceptsTab="True" AllowDrop="False" AutoWordSelection="True" Grid.IsSharedSizeScope="False" IsTabStop="False" MinHeight="0" MinWidth="0" VerticalContentAlignment="Top" BorderThickness="1" HorizontalContentAlignment="Left" IsHitTestVisible="True" IsReadOnly="True" AcceptsReturn="True" IsReadOnlyCaretVisible="True" BorderBrush="#FFD5DFE5" >
+            <TextBox.ContextMenu>
+                <ContextMenu> 
+                    <MenuItem Header="_Cut" Command="ApplicationCommands.Cut">
+                    <MenuItem.Icon>
+                        <Image Source="/CNNWB;component/Resources/Images/CutHS.png" />
+                    </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Co_py" Command="ApplicationCommands.Copy">
+                        <MenuItem.Icon>
+                            <Image Source="/CNNWB;component/Resources/Images/CopyHS.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Paste" Command="ApplicationCommands.Paste">
+                        <MenuItem.Icon>
+                            <Image Source="/CNNWB;component/Resources/Images/PasteHS.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="Select _All" Command="ApplicationCommands.SelectAll"/>
+                    <Separator />
+                    <MenuItem Header="_Undo" Command="ApplicationCommands.Undo">
+                        <MenuItem.Icon>
+                            <Image Source="/CNNWB;component/Resources/Images/Edit_UndoHS.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Redo" Command="ApplicationCommands.Redo">
+                        <MenuItem.Icon>
+                            <Image Source="/CNNWB;component/Resources/Images/Edit_RedoHS.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </TextBox.ContextMenu>
+        </TextBox>
+        <TabControl Grid.Column="1" Grid.Row="2" Margin="6" Name="tabControlTestResult" SelectedIndex="{Binding Path=SelectedTabIndex, Mode=TwoWay}" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" ItemsSource="{Binding Path=ConfusionMatrix, Mode=OneWay}" BorderBrush="#FFD5DFE5">
+           
+        </TabControl>
+        <GroupBox IsEnabled="{Binding Path=IsValid}" Header="Select Image Set" Height="72" Margin="6,6,0,0" Name="groupBoxImageSetTesting" SnapsToDevicePixels="True" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left" Width="224" UseLayoutRounding="False" FontWeight="Normal">
+            <Grid Height="Auto" ShowGridLines="False" Width="Auto">
+                <RadioButton Content="Testing Set" GroupName="TestingSet" Height="16" Margin="6" Name="radioButtonTestingTestingSet" VerticalAlignment="Top" Width="Auto" Checked="radioButtonTestingTestingSet_Checked" IsChecked="True" TabIndex="0" />
+                <RadioButton IsChecked="{Binding UseTrainingSet}" Content="Training Set" GroupName="TestingSet" Height="16" Margin="6" Name="radioButtonTestingTrainingSet" VerticalAlignment="Bottom" Width="Auto" Checked="radioButtonTestingTrainingSet_Checked" TabIndex="1" />
+                <CheckBox Content="Distort Images" Height="16" HorizontalAlignment="Right" Margin="0,0,6,16" Name="checkBoxTestingDistortImage" SnapsToDevicePixels="False" VerticalAlignment="Bottom" Width="100" IsChecked="{Binding Path=UseDistortions}" IsThreeState="False" Unchecked="checkBoxTestingDistortImage_CheckedChanged" Checked="checkBoxTestingDistortImage_CheckedChanged" TabIndex="2" />
+            </Grid>
+        </GroupBox>
+        <Label Content="Confusion Matrix" Grid.Row="1" Grid.RowSpan="1" Height="Auto" HorizontalAlignment="Stretch" Margin="0" Name="label1" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Padding="0" HorizontalContentAlignment="Center" Grid.Column="1" FontSize="14" VerticalContentAlignment="Center" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" BorderThickness="3">
+            <Label.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" SpreadMethod="Pad" ColorInterpolationMode="ScRgbLinearInterpolation">
+                    <GradientStop Color="#79000000" Offset="0" />
+                    <GradientStop Color="White" Offset="1" />
+                </LinearGradientBrush>
+            </Label.Background>
+        </Label>
+        <Label Content="Misrecognized pattern listing" FontSize="14" FontStretch="Normal" FontStyle="Normal" FontWeight="Normal" Grid.ColumnSpan="1" Height="Auto" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0" Name="label2" Padding="0" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Grid.Row="1" IsEnabled="True" BorderThickness="3">
+            <Label.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" ColorInterpolationMode="ScRgbLinearInterpolation">
+                    <GradientStop Color="#79000000" Offset="0" />
+                    <GradientStop Color="White" Offset="1" />
+                </LinearGradientBrush>
+            </Label.Background>
+        </Label>
+        <GroupBox Header="Distortion parameters" HorizontalAlignment="Stretch" Margin="6,78,52,6" Name="groupBoxDistortionParameters" VerticalAlignment="Stretch" Width="242">
+            <Grid Width="Auto">
+                <TextBlock FontWeight="Normal" Height="Auto" HorizontalAlignment="Left" Margin="9,16,0,0" Name="textBlock7" Text="Severity factor:" VerticalAlignment="Top" Width="Auto" />
+                <TextBlock FontWeight="Normal" Height="Auto" HorizontalAlignment="Left" Margin="9,43,0,0" Name="textBlock8" Text="Maximum scaling:" VerticalAlignment="Top" Width="110" />
+                <TextBlock FontWeight="Normal" Height="Auto" HorizontalAlignment="Left" Margin="9,70,0,0" Name="textBlock9" Text="Maximum rotation:" VerticalAlignment="Top" Width="124" />
+                <TextBlock FontWeight="Normal" Height="Auto" HorizontalAlignment="Left" Margin="9,93,0,0" Name="textBlock10" Text="Elastic sigma:" VerticalAlignment="Top" />
+                <TextBox IsEnabled="{Binding Path=IsValid}" AllowDrop="False" AutoWordSelection="True" Height="21" HorizontalContentAlignment="Stretch" Margin="139,13,0,0" MaxLines="1" Name="textBoxSeverityFactor" Padding="1" Style="{StaticResource textBoxInError}" TabIndex="3" Validation.ErrorTemplate="{StaticResource validationTemplate}" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="79" IsReadOnly="False">
+                    <Binding Path="SeverityFactor" Mode="TwoWay" StringFormat="{}{0:R}" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <my:DoubleRangeRule Max="1" Min="0" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+                <TextBox IsEnabled="{Binding Path=IsValid}" AllowDrop="False" AutoWordSelection="True" Height="21" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="139,38,0,0" MaxLines="1" Name="textBoxMaximumScaling" Padding="1" Style="{StaticResource textBoxInError}" TabIndex="4" Validation.ErrorTemplate="{StaticResource validationTemplate}" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="79">
+                    <Binding Path="MaxScaling" Mode="TwoWay" StringFormat="{}{0:R}" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <my:DoubleRangeRule Max="100" Min="0" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+                <TextBox IsEnabled="{Binding Path=IsValid}" AllowDrop="False" AutoWordSelection="True" Height="21" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="139,63,0,0" MaxLines="1" Name="textBoxMaximumRotation" Padding="1" Style="{StaticResource textBoxInError}" TabIndex="5" Validation.ErrorTemplate="{StaticResource validationTemplate}" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="79">
+                    <Binding Path="MaxRotation" Mode="TwoWay" StringFormat="{}{0:R}" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <my:DoubleRangeRule Max="100" Min="0" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+                <TextBox IsEnabled="{Binding Path=IsValid}" AllowDrop="False" AutoWordSelection="True" Height="21" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="139,88,0,0" MaxLines="1" Name="textBoxElasticSigma" Padding="1" Style="{StaticResource textBoxInError}" TabIndex="6" Validation.ErrorTemplate="{StaticResource validationTemplate}" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="79">
+                    <Binding Path="ElasticSigma" Mode="TwoWay" StringFormat="{}{0:R}" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <my:DoubleRangeRule Max="100" Min="0" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+                <TextBox IsEnabled="{Binding Path=IsValid}" AllowDrop="False" AutoWordSelection="True" Height="21" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="139,113,0,0" MaxLines="1" Name="textBoxElasticScaling" Padding="1" Style="{StaticResource textBoxInError}" TabIndex="7" Validation.ErrorTemplate="{StaticResource validationTemplate}" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="79">
+                    <Binding Path="ElasticScaling" Mode="TwoWay" StringFormat="{}{0:R}" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <my:DoubleRangeRule Max="1" Min="0" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+                <TextBlock FontWeight="Normal" Height="Auto" HorizontalAlignment="Left" Margin="9,118,0,0" Name="textBlock11" Text="Elastic scaling:" VerticalAlignment="Top" Width="86" />
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

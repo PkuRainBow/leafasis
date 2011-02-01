@@ -1,0 +1,12 @@
+﻿<Window x:Class="CNNWB.Dialogs.TrainingParametersEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Training Schema Editor" UseLayoutRounding="True" SnapsToDevicePixels="True" Loaded="Window_Loaded" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="416" d:DesignWidth="300" SizeToContent="WidthAndHeight" ShowInTaskbar="False">
+    <Grid ShowGridLines="False">
+        <DataGrid AutoGenerateColumns="True" Height="Auto" HorizontalAlignment="Stretch" Margin="0,0,0,40" Name="dataGrid1" VerticalAlignment="Stretch" Width="Auto" ItemsSource="{Binding}" TabIndex="4" IsSynchronizedWithCurrentItem="True" CanUserReorderColumns="False" CanUserSortColumns="False" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FFAAE4F5" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" CanUserAddRows="True" CanUserDeleteRows="True" SelectionMode="Extended" />
+        <Button Content="Load" Height="23" HorizontalAlignment="Left" Margin="12,342,8,8" Name="buttonLoad" VerticalAlignment="Bottom" Width="75" TabIndex="0" Click="buttonLoad_Click" />
+        <Button Content="Save" Height="23" HorizontalAlignment="Left" Margin="93,342,8,8" Name="buttonSave" VerticalAlignment="Bottom" Width="75" TabIndex="1" Click="buttonSave_Click" />
+        <Button Content="Train" Height="23" HorizontalAlignment="Right" Margin="206,342,88,8" Name="buttonTrain" VerticalAlignment="Bottom" Width="75" IsDefault="True" TabIndex="2" Click="buttonTrain_Click" />
+        <Button Content="Cancel" Height="23" HorizontalAlignment="Right" Margin="287,342,8,8" Name="buttonCancel" VerticalAlignment="Bottom" Width="75" IsCancel="True" TabIndex="3" />
+    </Grid>
+</Window>
