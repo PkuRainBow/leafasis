@@ -55,3 +55,4 @@ using System;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: CLSCompliant(true)]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestCNNWB")]

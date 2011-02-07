@@ -3,7 +3,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Emgu.CV;
+using Emgu.Util;
 using CNNWB.Common;
+using Emgu.CV.Structure;
+using System.Collections.Generic;
 
 
 namespace CNNWB.Model
@@ -248,7 +252,104 @@ namespace CNNWB.Model
 			Dispose(true);
 			GC.SuppressFinalize(this);
 		}
+        private void LoadHandTestingPatternsFromDir(string path)
+        {
+            try
+            {
+                byte[] TestPatterns;
+                MNistHeight = 32;
+                MNistWidth = 32;
+                MNistSize = MNistWidth * MNistHeight;
+                int TrainingLabelCount = 9;
+                int LabelImageCount = 20;
+                TestingPatternsCount = TrainingLabelCount * LabelImageCount;
+                TestPatterns = new byte[TestingPatternsCount * MNistSize];
+                unsafe
+                {
 
+                    for (int ii = 0; ii < TrainingLabelCount; ii++)
+                    {
+                        string type = ii.ToString("D4");
+                        for (int i = 0; i < LabelImageCount; i++)
+                        {
+                            Image<Bgr, Byte> image = new Image<Bgr, byte>(path + "\\" + type + @"\0001\frame-" + i.ToString("D4") + ".jpg").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA); //Read the files as an 8-bit Bgr image  
+                            Image<Gray, Byte> gray = image.Convert<Gray, Byte>(); //Convert it to Grayscale
+                            //TrainPatternsList.Add(gray);
+
+                            for (int j = 0; j < MNistSize; j++)
+                            {
+                                TestPatterns[ii * MNistSize * 20 + i * MNistSize + j] = ((byte*)gray.MIplImage.imageData + j)[0];
+                            }
+                        }
+                    }
+                }
+
+
+                MNISTTesting = new ByteImageData[TestingPatternsCount];
+                Parallel.For(0, TestingPatternsCount, parallelOption, j =>
+                {
+                    ByteImageData pattern = new ByteImageData(j / LabelImageCount, new byte[MNistSize]);
+                    for (int i = 0; i < MNistSize; i++)
+                    {
+                        pattern.Image[i] = TestPatterns[(j * MNistSize) + i];
+                    }
+                    MNISTTesting[j] = pattern;
+                });
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        private void LoadHandTrainingPatternsFromDir(string path)
+        {
+            try
+            {
+                byte[] TrainPatterns;
+                MNistHeight = 32;
+                MNistWidth = 32;
+                MNistSize = MNistWidth * MNistHeight;
+                int TrainingLabelCount = 9;
+                int LabelImageCount = 20;
+                TrainingPatternsCount = TrainingLabelCount*LabelImageCount;
+
+                TrainPatterns = new byte[TrainingPatternsCount * MNistSize];
+                unsafe
+                {
+
+                    for (int ii = 0; ii < TrainingLabelCount; ii++)
+                    {
+                        string type = ii.ToString("D4");
+                        for (int i = 0; i < LabelImageCount; i++)
+                        {
+                            Image<Bgr, Byte> image = new Image<Bgr, byte>(path + "\\" + type + @"\0000\frame-" + i.ToString("D4") + ".jpg").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA); //Read the files as an 8-bit Bgr image  
+                            Image<Gray, Byte> gray = image.Convert<Gray, Byte>(); //Convert it to Grayscale
+                            for (int j = 0; j < MNistSize; j++)
+                            {
+                                TrainPatterns[ii * MNistSize*20 + i * MNistSize + j] = ((byte*)gray.MIplImage.imageData + j)[0];
+                            }
+                        }
+                    }
+                }
+                MNISTTraining = new ByteImageData[TrainingPatternsCount];
+                Parallel.For(0, TrainingPatternsCount, parallelOption, j =>
+                {
+                    int label = j / LabelImageCount;
+                    ByteImageData imageData = new ByteImageData(label, new byte[MNistSize]);
+                    for (int i = 0; i < MNistSize; i++)
+                    {
+                        imageData.Image[i] = TrainPatterns[(j * MNistSize) + i];
+                    }
+                    MNISTTraining[j] = imageData;
+                });
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 		private void LoadTrainingPatternsFromFile(string path)
 		{
 			try
@@ -349,8 +450,11 @@ namespace CNNWB.Model
 			stopwatch.Start();
 			
 			Task[] tasks = new Task[2];
-			tasks[0] = Task.Factory.StartNew(() => LoadTrainingPatternsFromFile(path));
-			tasks[1] = Task.Factory.StartNew(() => LoadTestingPatternsFromFile(path));
+			//tasks[0] = Task.Factory.StartNew(() => LoadTrainingPatternsFromFile(path));
+			//tasks[1] = Task.Factory.StartNew(() => LoadTestingPatternsFromFile(path));
+            path = @"D:\ebooks\hand gestrue recognition\hand data set\Set1";
+            tasks[0] = Task.Factory.StartNew(() => LoadHandTrainingPatternsFromDir(path));
+            tasks[1] = Task.Factory.StartNew(() => LoadHandTestingPatternsFromDir(path));
 
 			try
 			{
