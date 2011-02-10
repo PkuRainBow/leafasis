@@ -724,7 +724,10 @@ namespace CNNWB
 				case TrainingStates.NewEpoch:
 					learningPageViewModel.ProgressImageNumber = String.Empty;
 					TimeSpan span = DateTime.Now.Subtract(startSpan);
-					learningPageViewModel.TrainingResultCollection.Add(new TrainingResult(curEpoch, pageViewModel.NeuralNetwork.TrainingRate.Rate, pageViewModel.NeuralNetwork.TrainingRate.Distorted, avgMSE, misrecognitions, ((double)misrecognitions / ((double)600)), avgTestMSE, misrecognitionsTest, ((double)misrecognitionsTest / ((double)100)), new TimeSpan(span.Hours, span.Minutes, span.Seconds)));
+                    //Swordfish.WPF.Charts.ChartUtilities.AddTestLines(learningPageViewModel.Chart);
+                    TrainingResult trainingResult = new TrainingResult(curEpoch, pageViewModel.NeuralNetwork.TrainingRate.Rate, pageViewModel.NeuralNetwork.TrainingRate.Distorted, avgMSE, misrecognitions, ((double)misrecognitions / ((double)600)), avgTestMSE, misrecognitionsTest, ((double)misrecognitionsTest / ((double)100)), new TimeSpan(span.Hours, span.Minutes, span.Seconds));
+                    learningPageViewModel.DrawChart(trainingResult);//绘出误差曲线等
+                    learningPageViewModel.TrainingResultCollection.Add(trainingResult);
 					learningPageViewModel.CurrentState = TrainingStates.Idle;
 					startSpan = DateTime.Now;
 					break;

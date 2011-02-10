@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using CNNWB.Commands;
 using CNNWB.Common;
 using CNNWB.Model;
+using Swordfish.WPF.Charts;
 
 namespace CNNWB.ViewModel
 {
@@ -33,6 +34,7 @@ namespace CNNWB.ViewModel
         private RelayCommand _startCommand;
         private RelayCommand _stopCommand;
         private RelayCommand _editorCommand;
+        private XYLineChart _xyLineChart;
 
         #region Events
         /// <summary>
@@ -54,9 +56,73 @@ namespace CNNWB.ViewModel
             : base(dataProvider, neuralNetwork)
         {
             TrainingResultCollection = new ObservableCollection<TrainingResult>();
+
+            setupChart();
             AddCommandButtons();
         }
+        private void setupChart()
+        {
+            XYLineChart chart = new XYLineChart();
+            chart.Height = 126; chart.Width = 486;
+            
+            chart.RenderTransformOrigin = new Point(0.5,0.5);
+            // Add test Lines to demonstrate the control
 
+            chart.Primitives.Clear();
+
+            // Create 3 normal lines
+            ChartPrimitive[] lines = new ChartPrimitive[3];
+
+      
+            for (int lineNo = 0; lineNo < 3; ++lineNo)
+            {
+                ChartPrimitive line = new ChartPrimitive();
+
+                // Label the lines
+                //line.Label = "Test Line " + (lineNo + 1);
+                line.ShowInLegend = true;
+                //line.HitTest = true;
+
+                line.LineThickness = 1.5;
+                // Draw 3 sine curves
+                //for (double x = 0; x < limit + increment * .5; x += increment)
+                //{
+                //    line.AddPoint(x, 1);
+                //}
+                //line.AddPoint(0, 1);
+                // Add the lines to the chart
+                chart.Primitives.Add(line);
+                lines[lineNo] = line;
+            }
+            // Set the line colors to Red, Green, and Blue
+            lines[0].Label = "TrainingRate";
+            lines[1].Label = "AvgTrainMSE";
+            lines[2].Label = "AvgTestMSE";
+            lines[0].AddPoint(0, 2);
+            lines[0].AddPoint(33, 2);
+            lines[1].AddPoint(0, 1.5);
+            lines[1].AddPoint(33, 1.5);
+            lines[2].AddPoint(0, 1);
+            lines[2].AddPoint(33, 1);
+            
+            lines[0].Color = Colors.Red;
+            lines[1].Color = Colors.Green;
+            lines[2].Color = Colors.Blue;
+
+            chart.Title = "TrainingParameters";
+            chart.XAxisLabel = "TrainingEpoch";
+            chart.YAxisLabel = "Value";
+
+            chart.RedrawPlotLines();
+            lines[0].Points.Clear();
+            lines[1].Points.Clear();
+            lines[2].Points.Clear();
+            //lines[0].AddPoint(0, 0);
+            //lines[1].AddPoint(0, 0);
+            //lines[2].AddPoint(0, 0);
+            //_xyLineChart = chart;
+            Chart = chart;
+        }
         private void AddCommandButtons()
         {
             Button startButton = new Button();
@@ -79,6 +145,31 @@ namespace CNNWB.ViewModel
             CommandToolBar.Add(editorButton);
         }
 
+        public XYLineChart Chart
+        {
+            get { return _xyLineChart; }
+            set
+            {
+                if (value == _xyLineChart)
+                    return;
+                _xyLineChart = value;
+                this.OnPropertyChanged("Chart");
+            }
+        }
+        public void DrawChart(TrainingResult trainResult)
+        {
+            if (_xyLineChart == null)
+                return;
+            //TrainingRate
+            ChartPrimitive line0 = _xyLineChart.Primitives[0];
+            line0.AddPoint(trainResult.Epoch,trainResult.TrainingRate*1000);
+            ChartPrimitive line1 = _xyLineChart.Primitives[1];
+            line1.AddPoint(trainResult.Epoch, trainResult.AvgTrainMSE);
+            ChartPrimitive line2 = _xyLineChart.Primitives[2];
+            line2.AddPoint(trainResult.Epoch, trainResult.AvgTestMSE);
+            _xyLineChart.RedrawPlotLines();
+
+        }
         public TrainingStates CurrentState
         {
             get { return _currentState; }

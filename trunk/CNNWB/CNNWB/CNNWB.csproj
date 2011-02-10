@@ -418,6 +418,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Swordfish.WPF.Charts\Swordfish.WPF.Charts.2008.csproj">
+      <Project>{455B0C11-236A-4A4E-956F-1A3E41B7260B}</Project>
+      <Name>Swordfish.WPF.Charts.2008</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WindowsAPICodePack\Core\Core.csproj">
       <Project>{2E1FB0DF-F9BB-4909-9F32-2D9D022A8E57}</Project>
       <Name>Core</Name>
