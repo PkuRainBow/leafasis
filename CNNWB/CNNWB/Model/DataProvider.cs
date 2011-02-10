@@ -269,16 +269,15 @@ namespace CNNWB.Model
 
                     for (int ii = 0; ii < TrainingLabelCount; ii++)
                     {
-                        string type = ii.ToString("D4");
+                        string type = ii.ToString("D1");
+                        Image<Bgr, Byte> image = new Image<Bgr, byte>(path + "\\" + type + ".jpg").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA); //Read the files as an 8-bit Bgr image  
+                        Image<Gray, Byte> gray = image.Convert<Gray, Byte>(); //Convert it to Grayscale
                         for (int i = 0; i < LabelImageCount; i++)
                         {
-                            Image<Bgr, Byte> image = new Image<Bgr, byte>(path + "\\" + type + @"\0001\frame-" + i.ToString("D4") + ".jpg").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA); //Read the files as an 8-bit Bgr image  
-                            Image<Gray, Byte> gray = image.Convert<Gray, Byte>(); //Convert it to Grayscale
-                            //TrainPatternsList.Add(gray);
 
                             for (int j = 0; j < MNistSize; j++)
                             {
-                                TestPatterns[ii * MNistSize * 20 + i * MNistSize + j] = ((byte*)gray.MIplImage.imageData + j)[0];
+                                TestPatterns[ii * MNistSize * LabelImageCount + i * MNistSize + j] = ((byte*)gray.MIplImage.imageData + j)[0];
                             }
                         }
                     }
@@ -310,8 +309,8 @@ namespace CNNWB.Model
                 MNistHeight = 32;
                 MNistWidth = 32;
                 MNistSize = MNistWidth * MNistHeight;
-                int TrainingLabelCount = 9;
-                int LabelImageCount = 20;
+                int TrainingLabelCount = 10;
+                int LabelImageCount = 200;
                 TrainingPatternsCount = TrainingLabelCount*LabelImageCount;
 
                 TrainPatterns = new byte[TrainingPatternsCount * MNistSize];
@@ -320,14 +319,14 @@ namespace CNNWB.Model
 
                     for (int ii = 0; ii < TrainingLabelCount; ii++)
                     {
-                        string type = ii.ToString("D4");
+                        string type = ii.ToString("D1");
+                        Image<Bgr, Byte> image = new Image<Bgr, byte>(path + "\\" + type + ".jpg").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA); //Read the files as an 8-bit Bgr image  
+                        Image<Gray, Byte> gray = image.Convert<Gray, Byte>(); //Convert it to Grayscale
                         for (int i = 0; i < LabelImageCount; i++)
                         {
-                            Image<Bgr, Byte> image = new Image<Bgr, byte>(path + "\\" + type + @"\0000\frame-" + i.ToString("D4") + ".jpg").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA); //Read the files as an 8-bit Bgr image  
-                            Image<Gray, Byte> gray = image.Convert<Gray, Byte>(); //Convert it to Grayscale
                             for (int j = 0; j < MNistSize; j++)
                             {
-                                TrainPatterns[ii * MNistSize*20 + i * MNistSize + j] = ((byte*)gray.MIplImage.imageData + j)[0];
+                                TrainPatterns[ii * MNistSize * LabelImageCount + i * MNistSize + j] = ((byte*)gray.MIplImage.imageData + j)[0];
                             }
                         }
                     }
@@ -452,7 +451,8 @@ namespace CNNWB.Model
 			Task[] tasks = new Task[2];
 			//tasks[0] = Task.Factory.StartNew(() => LoadTrainingPatternsFromFile(path));
 			//tasks[1] = Task.Factory.StartNew(() => LoadTestingPatternsFromFile(path));
-            path = @"D:\ebooks\hand gestrue recognition\hand data set\Set1";
+            //path = @"D:\ebooks\hand gestrue recognition\hand data set\Set1";
+            path = @"D:\ebooks\hand gestrue recognition\hand data set\cng";
             tasks[0] = Task.Factory.StartNew(() => LoadHandTrainingPatternsFromDir(path));
             tasks[1] = Task.Factory.StartNew(() => LoadHandTestingPatternsFromDir(path));
 

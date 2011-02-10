@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:view="clr-namespace:CNNWB.View"
+    xmlns:SwordfishCharts="clr-namespace:Swordfish.WPF.Charts;assembly=Swordfish.WPF.Charts"
     
     >
     <UserControl.Resources >
@@ -16,6 +17,12 @@
             <RowDefinition Height="166" MinHeight="166" />
             <RowDefinition Height="*" MinHeight="100" />
         </Grid.RowDefinitions>
+        <GroupBox Header="Chart" Height="Auto" Margin="6,6,0,6" Name="groupBox0" Content="{Binding Path=Chart}" IsEnabled="False" UseLayoutRounding="False" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Width="501">
+
+                <!--<SwordfishCharts:XYLineChart x:Name="xyLineChart" 
+                    RenderTransformOrigin="0.5,0.5" Height="126" Width="486" />-->
+            
+        </GroupBox>
         <GroupBox Header="Progress" Height="Auto" HorizontalAlignment="Right" Margin="6" Name="groupBox1" VerticalAlignment="Stretch" Width="Auto" IsEnabled="False" UseLayoutRounding="False" Grid.ColumnSpan="1" HorizontalContentAlignment="Left" Grid.Column="0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch">
                 <TextBlock Height="116" HorizontalAlignment="Left" Margin="3" Name="textBlockTrainingProgress" Text="{Binding Path=ProgressText}" VerticalAlignment="Bottom" Width="185" UseLayoutRounding="True" SnapsToDevicePixels="True" />
@@ -23,7 +30,7 @@
                 <Label Content="{Binding ProgressImageNumber}" Height="28" Name="labelImageNumber" VerticalAlignment="Bottom" Margin="3" Padding="0" Width="12" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             </StackPanel>
         </GroupBox>
-        <ListView Height="Auto" HorizontalAlignment="Stretch" Name="listViewTrainingResult" VerticalAlignment="Stretch" Width="Auto" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=TrainingResultCollection}" Grid.Row="1" SelectionMode="Single" UseLayoutRounding="True" IsEnabled="True" BorderThickness="0" Grid.ColumnSpan="1" IsTextSearchEnabled="False" SnapsToDevicePixels="True">
+        <ListView Height="Auto" HorizontalAlignment="Stretch" Name="listViewTrainingResult"  VerticalAlignment="Stretch" Width="Auto" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=TrainingResultCollection}" Grid.Row="1" SelectionMode="Single" UseLayoutRounding="True" IsEnabled="True" BorderThickness="0" Grid.ColumnSpan="1" IsTextSearchEnabled="False" SnapsToDevicePixels="True">
             <ListView.View>
                 <GridView AllowsColumnReorder="False" RenderOptions.ClearTypeHint="Enabled">
                     <GridViewColumn Header="Epoch" Width="50">

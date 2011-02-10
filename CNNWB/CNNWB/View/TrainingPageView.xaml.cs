@@ -1,4 +1,6 @@
 ﻿using System.Windows.Controls;
+using Swordfish.WPF.Charts;
+using System;
 
 
 namespace CNNWB.View
@@ -11,6 +13,10 @@ namespace CNNWB.View
         public TrainingPageView()
         {
             InitializeComponent();
+            //ChartUtilities.AddTestLines(xyLineChart);
+            
+           
+            
         }
     }
 }
