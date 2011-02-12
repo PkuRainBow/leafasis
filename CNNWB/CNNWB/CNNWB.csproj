@@ -111,10 +111,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Emgu.CV">
-      <HintPath>..\..\..\..\Program Files\emgucv 2.2.0.1010\bin\Emgu.CV.dll</HintPath>
+      <HintPath>..\..\..\..\Emgu\emgucv-windows-x86 2.2.1.1150\bin\Emgu.CV.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.Util">
-      <HintPath>..\..\..\..\Program Files\emgucv 2.2.0.1010\bin\Emgu.Util.dll</HintPath>
+      <HintPath>..\..\..\..\Emgu\emgucv-windows-x86 2.2.1.1150\bin\Emgu.Util.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
