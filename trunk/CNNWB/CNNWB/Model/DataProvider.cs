@@ -261,25 +261,32 @@ namespace CNNWB.Model
                 MNistWidth = 32;
                 MNistSize = MNistWidth * MNistHeight;
                 int TrainingLabelCount = 9;
-                int LabelImageCount = 20;
+                int LabelImageCount = 100;
                 TestingPatternsCount = TrainingLabelCount * LabelImageCount;
                 TestPatterns = new byte[TestingPatternsCount * MNistSize];
+                //Capture cap = new Capture(@"D:\ebooks\hand gestrue recognition\hand data set\mov\0.MOV");
                 unsafe
                 {
 
                     for (int ii = 0; ii < TrainingLabelCount; ii++)
                     {
                         string type = ii.ToString("D1");
-                        Image<Bgr, Byte> image = new Image<Bgr, byte>(path + "\\" + type + ".jpg").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA); //Read the files as an 8-bit Bgr image  
-                        Image<Gray, Byte> gray = image.Convert<Gray, Byte>(); //Convert it to Grayscale
+                        //Image<Bgr, Byte> image = new Image<Bgr, byte>(path + "\\" + type + ".jpg").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA); //Read the files as an 8-bit Bgr image  
+                        //Image<Gray, Byte> gray = image.Convert<Gray, Byte>(); //Convert it to Grayscale
+                        Capture cap = new Capture(path + "\\" + type + ".MOV");
+                        for(int i =0; i<200;i++)
+                        {
+                            cap.QueryGrayFrame();//skip first 200 frames
+                        }
                         for (int i = 0; i < LabelImageCount; i++)
                         {
-
+                            Image<Gray, Byte> gray = cap.QueryGrayFrame().Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA);
                             for (int j = 0; j < MNistSize; j++)
                             {
                                 TestPatterns[ii * MNistSize * LabelImageCount + i * MNistSize + j] = ((byte*)gray.MIplImage.imageData + j)[0];
                             }
                         }
+                        cap.Dispose();
                     }
                 }
 
@@ -320,15 +327,18 @@ namespace CNNWB.Model
                     for (int ii = 0; ii < TrainingLabelCount; ii++)
                     {
                         string type = ii.ToString("D1");
-                        Image<Bgr, Byte> image = new Image<Bgr, byte>(path + "\\" + type + ".jpg").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA); //Read the files as an 8-bit Bgr image  
-                        Image<Gray, Byte> gray = image.Convert<Gray, Byte>(); //Convert it to Grayscale
+                        //Image<Bgr, Byte> image = new Image<Bgr, byte>(path + "\\" + type + ".jpg").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA); //Read the files as an 8-bit Bgr image  
+                        //Image<Gray, Byte> gray = image.Convert<Gray, Byte>(); //Convert it to Grayscale
+                        Capture cap = new Capture(path + "\\" + type + ".MOV");
                         for (int i = 0; i < LabelImageCount; i++)
                         {
+                            Image<Gray, Byte> gray = cap.QueryGrayFrame().Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA);
                             for (int j = 0; j < MNistSize; j++)
                             {
                                 TrainPatterns[ii * MNistSize * LabelImageCount + i * MNistSize + j] = ((byte*)gray.MIplImage.imageData + j)[0];
                             }
                         }
+                        cap.Dispose();
                     }
                 }
                 MNISTTraining = new ByteImageData[TrainingPatternsCount];
@@ -452,7 +462,7 @@ namespace CNNWB.Model
 			//tasks[0] = Task.Factory.StartNew(() => LoadTrainingPatternsFromFile(path));
 			//tasks[1] = Task.Factory.StartNew(() => LoadTestingPatternsFromFile(path));
             //path = @"D:\ebooks\hand gestrue recognition\hand data set\Set1";
-            path = @"D:\ebooks\hand gestrue recognition\hand data set\cng";
+            path = @"D:\ebooks\hand gestrue recognition\hand data set\mov";
             tasks[0] = Task.Factory.StartNew(() => LoadHandTrainingPatternsFromDir(path));
             tasks[1] = Task.Factory.StartNew(() => LoadHandTestingPatternsFromDir(path));
 

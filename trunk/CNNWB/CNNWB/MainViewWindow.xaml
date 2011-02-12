@@ -8,7 +8,7 @@
         ShowInTaskbar="True"
         Width="1024" Height="768"
         WindowStartupLocation="CenterScreen"
-        Title="Convolutional Neural Network MNIST Workbench" Loaded="Window_Loaded" UseLayoutRounding="True" VisualClearTypeHint="Enabled" VisualTextRenderingMode="ClearType">
+        Title="Convolutional Neural Network Workbench" Loaded="Window_Loaded" UseLayoutRounding="True" VisualClearTypeHint="Enabled" VisualTextRenderingMode="ClearType">
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:PageViewModel}">
