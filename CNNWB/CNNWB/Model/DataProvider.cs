@@ -63,6 +63,17 @@ namespace CNNWB.Model
 			Image = image;
 		}
 	}
+    public struct MyImageData
+    {
+        public byte[] Label { get; set; }
+        public byte[] Image { get; set; }
+        public MyImageData(byte[] label, byte[] image)
+            : this()
+        {
+            Label = label;
+            Image = image;
+        }
+    }
 
 	public class DataProviderEventArgs : EventArgs
 	{
@@ -93,6 +104,8 @@ namespace CNNWB.Model
 		public DoubleImageData[] PreparedTrainingPatterns { get; private set; }
 		public ByteImageData[] MNISTTraining { get; private set; }
 		public ByteImageData[] MNISTTesting { get; private set; }
+        public MyImageData[] EdgeTraining { get; private set; }
+        public MyImageData[] EdgeTesting { get; private set; }
 		public int MNistWidth { get; private set; }
 		public int MNistHeight { get; private set; }
 		public int MNistSize { get; private set; }
@@ -308,6 +321,7 @@ namespace CNNWB.Model
                 throw;
             }
         }
+
         private void LoadHandTrainingPatternsFromDir(string path)
         {
             try
@@ -317,7 +331,7 @@ namespace CNNWB.Model
                 MNistWidth = 32;
                 MNistSize = MNistWidth * MNistHeight;
                 int TrainingLabelCount = 10;
-                int LabelImageCount = 200;
+                int LabelImageCount = 20;
                 TrainingPatternsCount = TrainingLabelCount*LabelImageCount;
 
                 TrainPatterns = new byte[TrainingPatternsCount * MNistSize];
@@ -353,6 +367,72 @@ namespace CNNWB.Model
                     MNISTTraining[j] = imageData;
                 });
 
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        private void LoadHandTestingPatternsFromImg(string path)
+        {
+            try
+            {
+                TrainingPatternsCount = 10;
+                MNistHeight = 32;
+                MNistWidth = 32;
+
+                MNistSize = MNistHeight * MNistWidth;
+                Image<Gray, Byte> image = new Image<Gray, Byte>(path + "\\in.tif").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA); //Read the files as an 8-bit Bgr image  
+                ///Image<Gray, Byte> gray = image.Convert<Gray, Byte>(); //Convert it to Grayscale
+                //target image
+                Image<Gray, Byte> target = new Image<Gray, byte>(path + "\\out.tif").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA);
+                EdgeTesting = new MyImageData[TrainingPatternsCount];
+                Parallel.For(0, TrainingPatternsCount, parallelOption, j =>
+                {
+                    MyImageData imageData = new MyImageData(new byte[28 * 28], new byte[MNistSize]);
+                    for (int i = 0; i < MNistSize; i++)
+                    {
+                        unsafe
+                        {
+                            imageData.Label[i] = ((byte*)target.MIplImage.imageData + i)[0];
+                            imageData.Image[i] = ((byte*)image.MIplImage.imageData + i)[0];
+                        }
+                    }
+                    EdgeTesting[j] = imageData;
+                });
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        private void LoadHandTrainingPatternsFromImg(string path)
+        {
+            try
+            {
+                TrainingPatternsCount = 200;
+                MNistHeight = 32;
+                MNistWidth = 32;
+                
+                MNistSize = MNistHeight * MNistWidth;
+                Image<Gray, Byte> image = new Image<Gray, Byte>(path + "\\in.tif").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA); //Read the files as an 8-bit Bgr image  
+                ///Image<Gray, Byte> gray = image.Convert<Gray, Byte>(); //Convert it to Grayscale
+                //target image
+                Image<Gray,Byte> target = new Image<Gray,byte>(path+"\\out.tif").Resize(32, 32, Emgu.CV.CvEnum.INTER.CV_INTER_AREA);
+                EdgeTraining = new MyImageData[TrainingPatternsCount];
+                Parallel.For(0, TrainingPatternsCount, parallelOption, j =>
+                {
+                    MyImageData imageData = new MyImageData(new byte[28*28], new byte[MNistSize]);
+                    for (int i = 0; i < MNistSize; i++)
+                    {
+                        unsafe
+                        {
+                            imageData.Label[i] = ((byte*)target.MIplImage.imageData + i)[0];
+                            imageData.Image[i] = ((byte*)image.MIplImage.imageData + i)[0];
+                        }
+                    }
+                    EdgeTraining[j] = imageData;
+                });
             }
             catch (Exception)
             {
