@@ -183,27 +183,32 @@ namespace CNNWB
             //network.Layers.Add(new Layers(network, LayerTypes.FullyConnected, KernelTypes.Sigmoid, 10));
             //network.InitWeights();
 
-
-            NeuralNetworks network = new NeuralNetworks("LeNet-5", 0.8D, LossFunctions.MeanSquareError, 0.02D);
+            NeuralNetworks network = new NeuralNetworks("EdgeNet", 0.8D, LossFunctions.MeanSquareError, 0.02D);
             network.Layers.Add(new Layers(network, LayerTypes.Input, 1, 32, 32));
-            network.Layers.Add(new Layers(network, LayerTypes.Convolutional, KernelTypes.Sigmoid, 6, 28, 28, 5, 5));
-            network.Layers.Add(new Layers(network, LayerTypes.Subsampling, KernelTypes.AveragePooling, 6, 14, 14, 2, 2));
-            List<bool> mapCombinations = new List<bool>(16 * 6) 
-			{
-			    true,  false, false, false, true,  true,  true,  false, false, true,  true,  true,  true,  false, true,  true,
-			    true,  true,  false, false, false, true,  true,  true,  false, false, true,  true,  true,  true,  false, true,
-			    true,  true,  true,  false, false, false, true,  true,  true,  false, false, true,  false, true,  true,  true,
-			    false, true,  true,  true,  false, false, true,  true,  true,  true,  false, false, true,  false, true,  true,
-			    false, false, true,  true,  true,  false, false, true,  true,  true,  true,  false, true,  true,  false, true,
-			    false, false, false, true,  true,  true,  false, false, true,  true,  true,  true,  false, true,  true,  true
-			};
-            network.Layers.Add(new Layers(network, LayerTypes.Convolutional, KernelTypes.Sigmoid, 16, 10, 10, 5, 5, new Mappings(network, 2, mapCombinations)));
-            network.Layers.Add(new Layers(network, LayerTypes.Subsampling, KernelTypes.AveragePooling, 16, 5, 5, 2, 2));
-            network.Layers.Add(new Layers(network, LayerTypes.Convolutional, KernelTypes.Sigmoid, 120, 1, 1, 5, 5));
-            //network.Layers.Add(new Layers(network, LayerTypes.FullyConnected, KernelTypes.Sigmoid, 1, 7, 12));
-            //network.Layers.Add(new Layers(network, LayerTypes.RBF, KernelTypes.Gaussian, 10));
-            network.Layers.Add (new Layers (network, LayerTypes.FullyConnected , KernelTypes.Sigmoid, 10));
+            network.Layers.Add(new Layers(network, LayerTypes.Convolutional, KernelTypes.Sigmoid, 3, 28, 28, 5, 5));
+            network.Layers.Add(new Layers(network, LayerTypes.FullyConnected, KernelTypes.Sigmoid, 28*28));
             network.InitWeights();
+
+            //NeuralNetworks network = new NeuralNetworks("LeNet-5", 0.8D, LossFunctions.MeanSquareError, 0.02D);
+            //network.Layers.Add(new Layers(network, LayerTypes.Input, 1, 32, 32));
+            //network.Layers.Add(new Layers(network, LayerTypes.Convolutional, KernelTypes.Sigmoid, 6, 28, 28, 5, 5));
+            //network.Layers.Add(new Layers(network, LayerTypes.Subsampling, KernelTypes.AveragePooling, 6, 14, 14, 2, 2));
+            //List<bool> mapCombinations = new List<bool>(16 * 6) 
+            //{
+            //    true,  false, false, false, true,  true,  true,  false, false, true,  true,  true,  true,  false, true,  true,
+            //    true,  true,  false, false, false, true,  true,  true,  false, false, true,  true,  true,  true,  false, true,
+            //    true,  true,  true,  false, false, false, true,  true,  true,  false, false, true,  false, true,  true,  true,
+            //    false, true,  true,  true,  false, false, true,  true,  true,  true,  false, false, true,  false, true,  true,
+            //    false, false, true,  true,  true,  false, false, true,  true,  true,  true,  false, true,  true,  false, true,
+            //    false, false, false, true,  true,  true,  false, false, true,  true,  true,  true,  false, true,  true,  true
+            //};
+            //network.Layers.Add(new Layers(network, LayerTypes.Convolutional, KernelTypes.Sigmoid, 16, 10, 10, 5, 5, new Mappings(network, 2, mapCombinations)));
+            //network.Layers.Add(new Layers(network, LayerTypes.Subsampling, KernelTypes.AveragePooling, 16, 5, 5, 2, 2));
+            //network.Layers.Add(new Layers(network, LayerTypes.Convolutional, KernelTypes.Sigmoid, 120, 1, 1, 5, 5));
+            ////network.Layers.Add(new Layers(network, LayerTypes.FullyConnected, KernelTypes.Sigmoid, 1, 7, 12));
+            ////network.Layers.Add(new Layers(network, LayerTypes.RBF, KernelTypes.Gaussian, 10));
+            //network.Layers.Add (new Layers (network, LayerTypes.FullyConnected , KernelTypes.Sigmoid, 10));
+            //network.InitWeights();
             //network.Layers.Last().LockedWeights = true;
 
 			//NeuralNetworks network = new NeuralNetworks("MyNet-32", 0.8D, LossFunctions.MeanSquareError, 0.02D);
