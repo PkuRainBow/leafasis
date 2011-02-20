@@ -68,3 +68,8 @@ http://www.computervisiononline.com/
 http://www.ipol.im/
 这里有图像处理的算法和在线演示，还有详细的算法描述
 }}}
+  #算法笔记
+{{{
+http://www.csie.ntnu.edu.tw/~u91029/index.html
+这里有众多的算法讲述，图形演示，来自台湾
+}}}
