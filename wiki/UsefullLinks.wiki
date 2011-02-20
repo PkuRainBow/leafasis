@@ -73,3 +73,8 @@ http://www.ipol.im/
 http://www.csie.ntnu.edu.tw/~u91029/index.html
 这里有众多的算法讲述，图形演示，来自台湾
 }}}
+  # imagemagick
+{{{
+http://www.imagemagick.org/script/index.php
+一个很全面的图像处理库，各种形态学操作都有。
+}}}
