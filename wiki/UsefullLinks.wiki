@@ -78,3 +78,8 @@ http://www.csie.ntnu.edu.tw/~u91029/index.html
 http://www.imagemagick.org/script/index.php
 一个很全面的图像处理库，各种形态学操作都有。
 }}}
+  # inventwithpython
+{{{
+"Invent Your Own Computer Games with Python" 是一本教授小朋友如何使用 Python 并编写自己的小游戏的自由尽管目标读者群体是小朋友，不过相信对于喜好 Python 的大朋友也是有益处的～
+http://inventwithpython.com/
+}}}
